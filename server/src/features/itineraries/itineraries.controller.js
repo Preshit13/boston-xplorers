@@ -87,14 +87,14 @@ export async function deleteItinerary(req, res) {
     const deleted = await itinerariesService.deleteItinerary(id);
 
     if (deleted.status === 404) {
-      res.status(404).json({ error: true, message: "itinerary not found" });
+      return res.status(404).json({ error: true, message: "itinerary not found" });
     }
 
     if (deleted.status === 500) {
-      res.status(500).json({ error: true, message: "error in deleting itinerary" });
+      return res.status(500).json({ error: true, message: "error in deleting itinerary" });
     }
 
-    res.status(200).json({ error: false, message: "itinerary deleted successfully" });
+    return res.status(200).json({ error: false, message: "itinerary deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: true, message: `Error in deleting itinerary: ${error}` });
   }
@@ -183,7 +183,7 @@ export async function copyItinerary(req, res) {
     );
 
     if (copiedItinerary.status == 404) {
-      res.status(404).json({
+      return res.status(404).json({
         error: true,
         message: `Requested itinerary to copy not found`,
       });
@@ -198,13 +198,13 @@ export async function copyItinerary(req, res) {
     }
 
     if (copiedItinerary.status == 500) {
-      res.status(500).json({
+      return res.status(500).json({
         error: true,
         message: `Error in copying itinerary: ${copiedItinerary.message}`,
       });
     }
 
-    res.status(201).json({
+    return res.status(201).json({
       error: false,
       message: "itinerary copied successfully",
       itinerary: copiedItinerary,
