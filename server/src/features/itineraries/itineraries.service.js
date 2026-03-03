@@ -236,7 +236,7 @@ export async function deleteItinerary({ itineraryID }) {
       .collection("itinerarySlots")
       .deleteMany({ itineraryID: itineraryID });
     const itineraryDeletion = await db
-      .collection("itinerary")
+      .collection("itineraries")
       .deleteOne({ itineraryID: itineraryID });
     return {
       status: 200,
