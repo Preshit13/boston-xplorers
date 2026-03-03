@@ -223,7 +223,7 @@ export async function createItinerary({ itineraryName, startDate, endDate }) {
 export async function deleteItinerary({ itineraryID }) {
   try {
     const db = getDatabase();
-    const itinerary = await db.collection("itineraries").find({ itineraryID: itineraryID });
+    const itinerary = await db.collection("itineraries").findOne({ itineraryID: itineraryID });
 
     if (!itinerary) {
       return {
